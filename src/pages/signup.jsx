@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { TextInput, PrimaryButton } from "../components/atoms";
 import { signUp } from "../redux/users/operations";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -97,6 +98,10 @@ const SignUp = () => {
             }
           />
         </div>
+
+        <Link href="/signin">
+          <a className="text-right mt-4 block">ログイン画面に戻る→</a>
+        </Link>
       </div>
     </div>
   );

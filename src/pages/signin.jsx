@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { TextInput, PrimaryButton } from "../components/atoms";
 import { signIn } from "../redux/users/operations";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const SignIn = () => {
     <div className="container m-auto">
       <div className="w-96 mx-auto mt-10">
         <h2 className="text-2xl text-blue-700 font-semibold text-center mb-2">
-          サインイン
+          ログイン
         </h2>
         <TextInput
           fullWidth={true}
@@ -52,10 +53,18 @@ const SignIn = () => {
         />
         <div className="mt-8 text-center">
           <PrimaryButton
-            label={"Sign in"}
+            label={"ログイン"}
             onClick={() => dispatch(signIn(email, password))}
           />
         </div>
+
+        <Link href="/signup">
+          <a className="text-right mt-4 block">新規会員登録→</a>
+        </Link>
+
+        <Link href="/signin/reset">
+          <a className="text-right mt-2 block">パスワードを忘れた方はこちら→</a>
+        </Link>
       </div>
     </div>
   );
