@@ -1,4 +1,4 @@
-import { signInAction } from "./actions";
+import { signInAction, signOutAction } from "./actions";
 import Router from "next/router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
@@ -108,5 +108,35 @@ export const signUp = (username, email, password, confirmPassword) => {
             });
         }
       });
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch) => {
+    auth.signOut().then(() => {
+      dispatch(signOutAction());
+      Router.push("/signin");
+    });
+  };
+};
+
+export const resetPassword = (email) => {
+  return async () => {
+    if (email === "") {
+      alert("必須項目が未入力です");
+      return false;
+    } else {
+      return auth
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          alert(
+            "入力されたアドレス宛にパスワードリセットのメールをお送りしましたのでご確認ください。"
+          );
+          Router.push("/signin");
+        })
+        .catch(() => {
+          alert("登録されていないメールアドレスです。もう一度ご確認ください。");
+        });
+    }
   };
 };
