@@ -2,20 +2,15 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { signIn } from "../redux/users/operations";
 import { useRouter } from "next/router";
+import { signOut } from "../redux/users/operations";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const selector = useSelector((state) => state);
-
-  console.log(selector.users);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -28,7 +23,7 @@ export default function Home() {
           <a>aboutへ</a>
         </Link>
 
-        <button onClick={() => dispatch(signIn())}>sign in</button>
+        <button onClick={() => dispatch(signOut())}>ログアウト</button>
       </main>
     </div>
   );

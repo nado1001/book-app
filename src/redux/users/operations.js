@@ -1,27 +1,68 @@
-import { signInAction } from "./actions";
+import { signInAction, signOutAction } from "./actions";
 import Router from "next/router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
-export const signIn = () => {
-  return async (dispatch, getState) => {
-    const state = getState();
-    const isSignedIn = state.users.isSignedIn;
+export const listenAuthState = () => {
+  return async (dispatch) => {
+    return auth.onAuthStateChanged((user) => {
+      // 現在ログインしているユーザーを取得
+      if (user) {
+        const uid = user.uid;
+        // DBからユーザーの情報を取得
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.data();
 
-    if (!isSignedIn) {
-      const url = "https://api.github.com/users/take-tech1001";
-      const res = await fetch(url)
-        .then((res) => res.json())
-        .catch(() => null);
+            // actionsのsignInActionのstateを変更
+            dispatch(
+              signInAction({
+                isSignedIn: true,
+                role: data.role,
+                uid: uid,
+                username: data.username,
+              })
+            );
+          });
+      } else {
+        // ユーザーが存在していない場合
+        Router.push("/signin");
+      }
+    });
+  };
+};
 
-      const name = res.login;
-      dispatch(
-        signInAction({
-          uid: "00001",
-          username: name,
-        })
-      );
-      Router.push("/about");
+export const signIn = (email, password) => {
+  return async (dispatch) => {
+    if (email === "" || password === "") {
+      alert("必須項目が未入力です");
+      return false;
     }
+
+    auth.signInWithEmailAndPassword(email, password).then((result) => {
+      const user = result.user;
+
+      if (user) {
+        const uid = user.uid;
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.data();
+
+            dispatch(
+              signInAction({
+                isSignedIn: true,
+                uid: uid,
+                role: data.role,
+                username: data.username,
+              })
+            );
+            Router.push("/");
+          });
+      }
+    });
   };
 };
 
@@ -67,5 +108,35 @@ export const signUp = (username, email, password, confirmPassword) => {
             });
         }
       });
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch) => {
+    auth.signOut().then(() => {
+      dispatch(signOutAction());
+      Router.push("/signin");
+    });
+  };
+};
+
+export const resetPassword = (email) => {
+  return async () => {
+    if (email === "") {
+      alert("必須項目が未入力です");
+      return false;
+    } else {
+      return auth
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          alert(
+            "入力されたアドレス宛にパスワードリセットのメールをお送りしましたのでご確認ください。"
+          );
+          Router.push("/signin");
+        })
+        .catch(() => {
+          alert("登録されていないメールアドレスです。もう一度ご確認ください。");
+        });
+    }
   };
 };

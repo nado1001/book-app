@@ -1,23 +1,14 @@
 import { useCallback, useState } from "react";
 import { TextInput, PrimaryButton } from "../components/atoms";
-import { signUp } from "../redux/users/operations";
+import { signIn } from "../redux/users/operations";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 
-const SignUp = () => {
+const SignIn = () => {
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const inputUsername = useCallback(
-    (event) => {
-      setUsername(event.target.value);
-    },
-    [setUsername]
-  );
 
   const inputEmail = useCallback(
     (event) => {
@@ -33,30 +24,12 @@ const SignUp = () => {
     [setPassword]
   );
 
-  const inputConfirmPassword = useCallback(
-    (event) => {
-      setConfirmPassword(event.target.value);
-    },
-    [setConfirmPassword]
-  );
-
   return (
     <div className="container m-auto">
       <div className="w-96 mx-auto mt-10">
         <h2 className="text-2xl text-blue-700 font-semibold text-center mb-2">
-          新規会員登録
+          ログイン
         </h2>
-        <TextInput
-          fullWidth={true}
-          label={"ユーザー名"}
-          multiline={false}
-          required={true}
-          rows={1}
-          value={username}
-          type={"text"}
-          onChange={inputUsername}
-        />
-        <div className="mt-2" />
         <TextInput
           fullWidth={true}
           label={"メールアドレス"}
@@ -78,33 +51,23 @@ const SignUp = () => {
           type={"password"}
           onChange={inputPassword}
         />
-        <div className="mt-2" />
-        <TextInput
-          fullWidth={true}
-          label={"パスワード（再確認）"}
-          multiline={false}
-          required={true}
-          rows={1}
-          value={confirmPassword}
-          type={"password"}
-          onChange={inputConfirmPassword}
-        />
-
         <div className="mt-8 text-center">
           <PrimaryButton
-            label={"登録する"}
-            onClick={() =>
-              dispatch(signUp(username, email, password, confirmPassword))
-            }
+            label={"ログイン"}
+            onClick={() => dispatch(signIn(email, password))}
           />
         </div>
 
-        <Link href="/signin">
-          <a className="text-right mt-4 block">ログイン画面に戻る→</a>
+        <Link href="/signup">
+          <a className="text-right mt-4 block">新規会員登録→</a>
+        </Link>
+
+        <Link href="/signin/reset">
+          <a className="text-right mt-2 block">パスワードを忘れた方はこちら→</a>
         </Link>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;
