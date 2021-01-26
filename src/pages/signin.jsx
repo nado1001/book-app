@@ -27,7 +27,7 @@ const SignIn = () => {
   return (
     <div className="container m-auto">
       <div className="w-96 mx-auto mt-10">
-        <h2 className="text-2xl text-blue-700 font-semibold text-center mb-2">
+        <h2 className="text-2xl text-block02 font-semibold text-center mb-2">
           ログイン
         </h2>
         <TextInput
@@ -51,9 +51,9 @@ const SignIn = () => {
           type={"password"}
           onChange={inputPassword}
         />
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center text-white font-semibold">
           <PrimaryButton
-            label={"ログイン"}
+            label={"ログインする"}
             onClick={() => dispatch(signIn(email, password))}
           />
         </div>
