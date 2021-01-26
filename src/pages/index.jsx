@@ -81,18 +81,18 @@ export default function Home({ title, thumbnail }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(
-    "https://www.googleapis.com/books/v1/volumes?q=%E4%B8%89%E7%A7%8B%E7%B8%8B"
-  );
-  const json = await res.json();
-  const title = json.items[0].volumeInfo.title;
-  const thumbnail = json.items[0].volumeInfo.imageLinks.thumbnail;
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     "https://www.googleapis.com/books/v1/volumes?q=%E4%B8%89%E7%A7%8B%E7%B8%8B"
+//   );
+//   const json = await res.json();
+//   const title = json.items[0].volumeInfo.title;
+//   const thumbnail = json.items[0].volumeInfo.imageLinks.thumbnail;
 
-  return {
-    props: {
-      title,
-      thumbnail,
-    },
-  };
-}
+//   return {
+//     props: {
+//       title,
+//       thumbnail,
+//     },
+//   };
+// }
