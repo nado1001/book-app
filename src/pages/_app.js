@@ -30,7 +30,7 @@ export default function MyApp(props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <title>Book Log</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
