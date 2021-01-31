@@ -21,7 +21,7 @@ const Post = ({ data }) => {
   // console.log(data.volumeInfo.title);
 
   return (
-    <Layout className="container" title={data.volumeInfo.title}>
+    <Layout title={data.volumeInfo.title}>
       <div className="md:flex md:justify-center md:px-0 px-6">
         <div className="margin-adjuster_container">
           <h1 className="text-2xl mt-4 text-center md:text-left">

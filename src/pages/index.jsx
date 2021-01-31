@@ -45,7 +45,7 @@ export default function Home() {
   }, [search]);
 
   return (
-    <Layout className="container">
+    <Layout>
       <div className="md:w-3/6 w-4/6 mx-auto mt-4">
         <h1 className="text-3xl">書籍検索</h1>
         <p className="my-4">著者名、本のタイトルなどを入力してください</p>
