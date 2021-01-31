@@ -93,7 +93,9 @@ export default function PersistentDrawerRight() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap className={classes.title}>
-            Book Log
+            <Link href="/">
+              <a>Book Log</a>
+            </Link>
           </Typography>
           <IconButton
             color="inherit"
