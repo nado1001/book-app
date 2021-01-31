@@ -1,8 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { signOut } from "../redux/users/operations";
 import { TextInput } from "../components/atoms";
 import { Layout } from "../components/organisms";
 import { useState, useCallback, useEffect } from "react";
@@ -10,7 +8,6 @@ import fetch from "node-fetch";
 import axios from "axios";
 
 export default function Home({ title, thumbnail }) {
-  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [bookList, setBookList] = useState([]);
 
@@ -44,8 +41,10 @@ export default function Home({ title, thumbnail }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div className="w-7/12">
+      <main className="py-20">
+        <div className="md:w-3/6 w-4/6 mx-auto mt-4">
+          <h1 className="text-3xl">書籍検索</h1>
+          <p className="my-4">著者名、本のタイトルなどを入力してください</p>
           <TextInput
             fullWidth={true}
             label={"検索"}
@@ -69,13 +68,13 @@ export default function Home({ title, thumbnail }) {
                   className="m-auto"
                 />
               ) : (
-                <span>no image</span>
+                <span className="flex justify-center items-center m-auto w-36 h-48">
+                  no image
+                </span>
               )}
             </li>
           ))}
         </ul>
-
-        <button onClick={() => dispatch(signOut())}>ログアウト</button>
       </main>
     </Layout>
   );

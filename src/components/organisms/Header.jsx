@@ -15,15 +15,21 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import SearchIcon from "@material-ui/icons/Search";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Link from "next/link";
+import { signOut } from "../../redux/users/operations";
+import { useDispatch } from "react-redux";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    "& > svg": {
+      margin: theme.spacing(2),
+    },
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -63,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerRight() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -121,18 +128,32 @@ export default function PersistentDrawerRight() {
         <List>
           <Link href="/">
             <a>
-              {["Inbox", "Starred", "Send email", "Drafts"].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
+              <ListItem button key="書籍検索">
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="書籍検索" />
+              </ListItem>
             </a>
           </Link>
+          <Link href="/books">
+            <a>
+              <ListItem button key="本棚">
+                <ListItemIcon>
+                  <MenuBookIcon />
+                </ListItemIcon>
+                <ListItemText primary="本棚" />
+              </ListItem>
+            </a>
+          </Link>
+          <button onClick={() => dispatch(signOut())} className="w-full">
+            <ListItem button key="ログアウト">
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="ログアウト" />
+            </ListItem>
+          </button>
         </List>
       </Drawer>
     </div>
