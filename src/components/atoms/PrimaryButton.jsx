@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   Button: {
-    backgroundColor: "#4dd0e1",
+    backgroundColor: "#556cd6",
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
