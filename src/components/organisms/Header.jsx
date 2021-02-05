@@ -20,7 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Link from "next/link";
 import { signOut } from "../../redux/users/operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerRight() {
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -138,7 +139,7 @@ export default function PersistentDrawerRight() {
               </ListItem>
             </a>
           </Link>
-          <Link href="/books">
+          <Link href={`/users/${selector.users.uid}`}>
             <a>
               <ListItem button key="本棚">
                 <ListItemIcon>
