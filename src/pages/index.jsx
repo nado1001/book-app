@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import { TextInput } from "../components/atoms";
 import { Layout } from "../components/organisms";
