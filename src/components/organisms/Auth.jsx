@@ -10,7 +10,7 @@ const Auth = ({ children }) => {
   const isSignedIn = getIsSignedIn(selector);
   const router = useRouter();
 
-  console.log(selector.users);
+  console.log(router.pathname);
 
   useEffect(() => {
     if (!isSignedIn) {
@@ -18,7 +18,17 @@ const Auth = ({ children }) => {
     }
   }, []);
 
-  return children;
+  if (
+    !isSignedIn &&
+    router.pathname !== "/signin" &&
+    router.pathname !== "/signup" &&
+    router.pathname !== "/signin/reset"
+  ) {
+    return <></>;
+  } else {
+    console.log(selector.users);
+    return children;
+  }
 };
 
 export default Auth;

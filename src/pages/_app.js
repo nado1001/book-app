@@ -33,13 +33,13 @@ export default function MyApp(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <Auth>
+        <Auth>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Component {...pageProps} />
-          </Auth>
-        </ThemeProvider>
+          </ThemeProvider>
+        </Auth>
       </Provider>
     </React.Fragment>
   );
