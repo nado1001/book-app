@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import { TextInput } from "../components/atoms";
 import { Layout } from "../components/organisms";
@@ -27,18 +26,21 @@ export default function Home() {
     [setSearch]
   );
 
-  async function fetchBooks(word) {
-    if (word) {
-      const res = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
-          word
-        )}&maxResults=30`
-      );
-      const json = await res.data.items;
-      setBookList(json);
-      // console.log(bookList);
-    }
-  }
+  const fetchBooks = useCallback(
+    async (word) => {
+      if (word) {
+        const res = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
+            word
+          )}&maxResults=15`
+        );
+        const json = await res.data.items;
+        setBookList(json);
+        // console.log(bookList);
+      }
+    },
+    [setBookList]
+  );
 
   useEffect(() => {
     fetchBooks(search);
