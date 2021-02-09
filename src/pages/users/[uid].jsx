@@ -1,23 +1,19 @@
-import { Layout } from "../../components/organisms";
-import { useSelector } from "react-redux";
 import { db } from "../../firebase";
-import { useCallback, useState, useEffect } from "react";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { Layout } from "../../components/organisms";
+import { BookEdit } from "../../components/molecules";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 const useStyles = makeStyles(() => ({
-  ButtonGroup: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-  },
   tab: {
     width: "49%",
     fontWeight: "bold",
     fontSize: "1.3rem",
+    borderRadius: "5px",
   },
 }));
 
@@ -66,32 +62,29 @@ const books = () => {
         </h1>
         <div className="mt-4" />
         <div className="px-3 md:px-0">
-          <ButtonGroup
-            disableElevation
-            variant="contained"
-            color="primary"
-            className={classes.ButtonGroup}
-          >
-            <Button className={classes.tab}>
+          <div className="flex items-center justify-between">
+            <Button className={classes.tab} variant="contained" color="primary">
               <Link href={`/users/${selector.users.uid}/?progress=unread`}>
                 <a className="w-full">未読</a>
               </Link>
             </Button>
-            <Button className={classes.tab}>
+            <Button className={classes.tab} variant="contained" color="primary">
               <Link href={`/users/${selector.users.uid}/?progress=read`}>
                 <a className="w-full">読了</a>
               </Link>
             </Button>
-          </ButtonGroup>
+          </div>
 
-          <ul className="mt-8 bg-gray-100 flex items-center">
+          <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
             {books.map((book, index) => (
               <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
-                <img
-                  src={book.thumbnail}
-                  alt={book.title}
-                  className="mx-auto"
-                />
+                <BookEdit title={book.title} description={book.description}>
+                  <img
+                    src={book.thumbnail}
+                    alt={book.title}
+                    className="mx-auto"
+                  />
+                </BookEdit>
               </li>
             ))}
           </ul>
