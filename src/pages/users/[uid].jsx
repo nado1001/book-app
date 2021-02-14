@@ -53,7 +53,7 @@ const books = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [router.query.progress, books]);
+  }, [router.query.progress]);
 
   return (
     <Layout title="本棚">
