@@ -7,7 +7,7 @@ import Fade from "@material-ui/core/Fade";
 import { makeStyles } from "@material-ui/core/styles";
 import { db } from "../../firebase";
 import { useSelector } from "react-redux";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
@@ -72,7 +72,7 @@ const Post = ({ data }) => {
 
   return (
     <Layout title={data.volumeInfo.title}>
-      <div className="md:flex md:justify-center md:px-0 px-6">
+      <div className="md:flex md:justify-center md:px-0 mt-8 px-6">
         <div className="margin-adjuster_container">
           <h1 className="text-2xl mt-4 text-center md:text-left">
             {data.volumeInfo.title}
