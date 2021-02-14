@@ -10,8 +10,6 @@ const Auth = ({ children }) => {
   const isSignedIn = getIsSignedIn(selector);
   const router = useRouter();
 
-  console.log(router.pathname);
-
   useEffect(() => {
     if (!isSignedIn) {
       dispatch(listenAuthState());
