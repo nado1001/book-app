@@ -12,7 +12,7 @@ const Layout = (props) => {
         <title>{props.title ? `${title} | ${siteTitle}` : siteTitle}</title>
       </Head>
       <Header />
-      <main className="py-20">{children}</main>
+      <main className="py-16">{children}</main>
     </React.Fragment>
   );
 };

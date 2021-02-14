@@ -57,12 +57,12 @@ const books = () => {
 
   return (
     <Layout title="本棚">
-      <div className="md:max-w-screen-lg mx-auto mt-4">
+      <div className="md:max-w-screen-lg mx-auto mt-8 px-3 md:px-0">
         <h1 className="text-2xl md:text-left md:pl-4 text-center bg-blue-200 py-2 rounded-lg">
           {selector.users.username}さんの本棚
         </h1>
         <div className="mt-4" />
-        <div className="px-3 md:px-0">
+        <div>
           <div className="flex items-center justify-between">
             <Button className={classes.tab} variant="contained" color="primary">
               <Link href={`/users/${selector.users.uid}/?progress=unread`}>

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { TextInput, PrimaryButton } from "../components/atoms";
+import { TextInput, PrimaryButton, Loading } from "../components/atoms";
 import { SimpleLayout } from "../components/organisms";
 import { signIn } from "../redux/users/operations";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ const SignIn = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const inputEmail = useCallback(
     (event) => {
@@ -25,9 +26,15 @@ const SignIn = () => {
     [setPassword]
   );
 
+  const submit = () => {
+    dispatch(signIn(email, password));
+    setLoading(true);
+  };
+
   return (
     <SimpleLayout title="ログイン">
       <div className="container m-auto">
+        {loading && <Loading />}
         <div className="w-96 mx-auto mt-10">
           <h2 className="text-2xl text-block02 font-semibold text-center mb-2">
             ログイン
@@ -54,10 +61,7 @@ const SignIn = () => {
             onChange={inputPassword}
           />
           <div className="mt-8 text-center text-white font-semibold">
-            <PrimaryButton
-              label={"ログインする"}
-              onClick={() => dispatch(signIn(email, password))}
-            />
+            <PrimaryButton label={"ログインする"} onClick={submit} />
           </div>
 
           <Link href="/signup">
