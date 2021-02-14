@@ -40,6 +40,7 @@ const books = () => {
         snapshots.forEach((snapshot) => {
           const data = snapshot.data();
           list.push({
+            totalPage: data.totalPage,
             currentPage: data.currentPage,
             description: data.description,
             progress: data.progress,
@@ -52,12 +53,12 @@ const books = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [router.query.progress]);
+  }, [router.query.progress, books]);
 
   return (
     <Layout title="本棚">
       <div className="md:max-w-screen-lg mx-auto mt-4">
-        <h1 className="text-2xl font-semibold md:text-left md:pl-4 text-center bg-blue-200 py-2 rounded-lg">
+        <h1 className="text-2xl md:text-left md:pl-4 text-center bg-blue-200 py-2 rounded-lg">
           {selector.users.username}さんの本棚
         </h1>
         <div className="mt-4" />
@@ -78,7 +79,13 @@ const books = () => {
           <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
             {books.map((book, index) => (
               <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
-                <BookEdit title={book.title} description={book.description}>
+                <BookEdit
+                  title={book.title}
+                  description={book.description}
+                  progress={book.progress}
+                  currentPage={book.currentPage}
+                  totalPage={book.totalPage}
+                >
                   <img
                     src={book.thumbnail}
                     alt={book.title}
