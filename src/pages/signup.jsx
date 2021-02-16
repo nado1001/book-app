@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { TextInput, PrimaryButton } from "../components/atoms";
+import { TextInput, PrimaryButton, Loading } from "../components/atoms";
 import { signUp } from "../redux/users/operations";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
@@ -12,6 +12,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const inputUsername = useCallback(
     (event) => {
@@ -41,9 +42,15 @@ const SignUp = () => {
     [setConfirmPassword]
   );
 
+  const submit = () => {
+    dispatch(signUp(username, email, password, confirmPassword));
+    setLoading(true);
+  };
+
   return (
     <SimpleLayout title="新規会員登録">
       <div className="container m-auto">
+        {loading && <Loading />}
         <div className="w-96 mx-auto mt-10">
           <h2 className="text-2xl text-block02 font-semibold text-center mb-2">
             新規会員登録
@@ -93,12 +100,7 @@ const SignUp = () => {
           />
 
           <div className="mt-8 text-center">
-            <PrimaryButton
-              label={"登録する"}
-              onClick={() =>
-                dispatch(signUp(username, email, password, confirmPassword))
-              }
-            />
+            <PrimaryButton label={"登録する"} onClick={submit} />
           </div>
 
           <Link href="/signin">

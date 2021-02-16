@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-
 const books = () => {
   const selector = useSelector((state) => state);
   const classes = useStyles();
@@ -68,44 +67,52 @@ const books = () => {
         </h1>
         <div className="mt-4" />
         <div>
-          <FormControl variant="outlined" className={classes.select}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              フィルター
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={status}
-              onChange={handleChange}
-              label="フィルター"
-            >
-              <MenuItem value="">
-                <em>すべて</em>
-              </MenuItem>
-              <MenuItem value="unread">未読</MenuItem>
-              <MenuItem value="reading">読書中</MenuItem>
-              <MenuItem value="read">読了</MenuItem>
-            </Select>
-          </FormControl>
-          <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
-            {books.map((book, index) => (
-              <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
-                <BookEdit
-                  title={book.title}
-                  description={book.description}
-                  progress={book.progress}
-                  currentPage={book.currentPage}
-                  totalPage={book.totalPage}
-                >
-                  <img
-                    src={book.thumbnail}
-                    alt={book.title}
-                    className="mx-auto"
-                  />
-                </BookEdit>
-              </li>
-            ))}
-          </ul>
+          {books.length !== 0 && (
+            <FormControl variant="outlined" className={classes.select}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                フィルター
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={status}
+                onChange={handleChange}
+                label="フィルター"
+              >
+                <MenuItem value="">
+                  <em>すべて</em>
+                </MenuItem>
+                <MenuItem value="unread">未読</MenuItem>
+                <MenuItem value="reading">読書中</MenuItem>
+                <MenuItem value="read">読了</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+          {books.length !== 0 ? (
+            <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
+              {books.map((book, index) => (
+                <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
+                  <BookEdit
+                    title={book.title}
+                    description={book.description}
+                    progress={book.progress}
+                    currentPage={book.currentPage}
+                    totalPage={book.totalPage}
+                  >
+                    <img
+                      src={book.thumbnail}
+                      alt={book.title}
+                      className="mx-auto"
+                    />
+                  </BookEdit>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="text-center text-xl mt-20">
+              現在、本棚に本が登録されていません。
+            </div>
+          )}
         </div>
       </div>
     </Layout>
