@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
 import { db } from "../../firebase";
 import {
   Dialog,
@@ -52,7 +51,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function BookEdit(props) {
-  const router = useRouter();
   const selector = useSelector((state) => state);
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState("");
@@ -154,6 +152,11 @@ export default function BookEdit(props) {
                 value="unread"
                 control={<Radio />}
                 label="未読"
+              />
+              <FormControlLabel
+                value="reading"
+                control={<Radio />}
+                label="読書中"
               />
               <FormControlLabel value="read" control={<Radio />} label="読了" />
             </RadioGroup>

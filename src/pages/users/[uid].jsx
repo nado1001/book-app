@@ -4,16 +4,18 @@ import { BookEdit } from "../../components/molecules";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/styles";
-import Link from "next/link";
 
 const useStyles = makeStyles(() => ({
-  tab: {
-    width: "49%",
-    fontWeight: "bold",
-    fontSize: "1.3rem",
-    borderRadius: "5px",
+  select: {
+    width: "20%",
+    ["@media (max-width:768px)"]: {
+      width: "100%",
+    },
   },
 }));
 
@@ -26,13 +28,16 @@ const books = () => {
     .doc(selector.users.uid)
     .collection("books");
 
+  const [status, setStatus] = useState("");
   const [books, setBooks] = useState([]);
+
+  const handleChange = (event) => {
+    setStatus(event.target.value);
+  };
 
   useEffect(() => {
     const query =
-      router.query.progress !== undefined
-        ? booksRef.where("progress", "==", router.query.progress)
-        : booksRef.where("progress", "==", "unread");
+      status !== "" ? booksRef.where("progress", "==", status) : booksRef;
     query
       .get()
       .then((snapshots) => {
@@ -53,7 +58,7 @@ const books = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [router.query.progress]);
+  }, [status]);
 
   return (
     <Layout title="本棚">
@@ -63,19 +68,25 @@ const books = () => {
         </h1>
         <div className="mt-4" />
         <div>
-          <div className="flex items-center justify-between">
-            <Button className={classes.tab} variant="contained" color="primary">
-              <Link href={`/users/${selector.users.uid}/?progress=unread`}>
-                <a className="w-full">未読</a>
-              </Link>
-            </Button>
-            <Button className={classes.tab} variant="contained" color="primary">
-              <Link href={`/users/${selector.users.uid}/?progress=read`}>
-                <a className="w-full">読了</a>
-              </Link>
-            </Button>
-          </div>
-
+          <FormControl variant="outlined" className={classes.select}>
+            <InputLabel id="demo-simple-select-outlined-label">
+              フィルター
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={status}
+              onChange={handleChange}
+              label="フィルター"
+            >
+              <MenuItem value="">
+                <em>すべて</em>
+              </MenuItem>
+              <MenuItem value="unread">未読</MenuItem>
+              <MenuItem value="reading">読書中</MenuItem>
+              <MenuItem value="read">読了</MenuItem>
+            </Select>
+          </FormControl>
           <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
             {books.map((book, index) => (
               <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
