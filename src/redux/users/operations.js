@@ -1,4 +1,4 @@
-import { signInAction, signOutAction, booksUpdateAction } from "./actions";
+import { signInAction, signOutAction } from "./actions";
 import Router from "next/router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
@@ -152,31 +152,31 @@ export const resetPassword = (email) => {
   };
 };
 
-export const updateBooks = (user) => {
-  return async (dispatch) => {
-    db.collection("users")
-      .doc(user)
-      .collection("books")
-      .get()
-      .then((snapshots) => {
-        let items = [];
-        snapshots.forEach((snapshot) => {
-          items.push(snapshot.data());
-        });
-        const unread = items.filter((item) => {
-          return item.progress === "unread";
-        });
-        const read = items.filter((item) => {
-          return item.progress === "read";
-        });
-        dispatch(
-          booksUpdateAction([
-            {
-              unread: unread,
-              read: read,
-            },
-          ])
-        );
-      });
-  };
-};
+// export const updateBooks = (user) => {
+//   return async (dispatch) => {
+//     db.collection("users")
+//       .doc(user)
+//       .collection("books")
+//       .get()
+//       .then((snapshots) => {
+//         let items = [];
+//         snapshots.forEach((snapshot) => {
+//           items.push(snapshot.data());
+//         });
+//         const unread = items.filter((item) => {
+//           return item.progress === "unread";
+//         });
+//         const read = items.filter((item) => {
+//           return item.progress === "read";
+//         });
+//         dispatch(
+//           booksUpdateAction([
+//             {
+//               unread: unread,
+//               read: read,
+//             },
+//           ])
+//         );
+//       });
+//   };
+// };
