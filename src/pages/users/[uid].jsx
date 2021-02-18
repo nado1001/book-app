@@ -67,27 +67,25 @@ const books = () => {
         </h1>
         <div className="mt-4" />
         <div>
-          {books.length !== 0 && (
-            <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">
-                フィルター
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={status}
-                onChange={handleChange}
-                label="フィルター"
-              >
-                <MenuItem value="">
-                  <em>すべて</em>
-                </MenuItem>
-                <MenuItem value="unread">未読</MenuItem>
-                <MenuItem value="reading">読書中</MenuItem>
-                <MenuItem value="read">読了</MenuItem>
-              </Select>
-            </FormControl>
-          )}
+          <FormControl variant="outlined" className={classes.select}>
+            <InputLabel id="demo-simple-select-outlined-label">
+              フィルター
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={status}
+              onChange={handleChange}
+              label="フィルター"
+            >
+              <MenuItem value="">
+                <em>すべて</em>
+              </MenuItem>
+              <MenuItem value="unread">未読</MenuItem>
+              <MenuItem value="reading">読書中</MenuItem>
+              <MenuItem value="read">読了</MenuItem>
+            </Select>
+          </FormControl>
           {books.length !== 0 ? (
             <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
               {books.map((book, index) => (
