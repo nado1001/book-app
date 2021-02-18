@@ -48,7 +48,9 @@ const Post = ({ data }) => {
   };
 
   const bookData = {
-    thumbnail: data.volumeInfo.imageLinks.thumbnail,
+    thumbnail: data.volumeInfo.imageLinks
+      ? data.volumeInfo.imageLinks.thumbnail
+      : "",
     title: data.volumeInfo.title,
     description: data.volumeInfo.description,
     totalPage: data.volumeInfo.pageCount,
