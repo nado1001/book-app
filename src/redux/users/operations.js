@@ -40,29 +40,35 @@ export const signIn = (email, password) => {
       return false;
     }
 
-    auth.signInWithEmailAndPassword(email, password).then((result) => {
-      const user = result.user;
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        const user = result.user;
 
-      if (user) {
-        const uid = user.uid;
-        db.collection("users")
-          .doc(uid)
-          .get()
-          .then((snapshot) => {
-            const data = snapshot.data();
+        if (user) {
+          const uid = user.uid;
+          db.collection("users")
+            .doc(uid)
+            .get()
+            .then((snapshot) => {
+              const data = snapshot.data();
 
-            dispatch(
-              signInAction({
-                isSignedIn: true,
-                uid: uid,
-                role: data.role,
-                username: data.username,
-              })
-            );
-            Router.push("/");
-          });
-      }
-    });
+              dispatch(
+                signInAction({
+                  isSignedIn: true,
+                  uid: uid,
+                  role: data.role,
+                  username: data.username,
+                })
+              );
+              Router.push("/");
+            });
+        }
+      })
+      .catch(() => {
+        alert("メールアドレスもしくはパスワードが正しくありません");
+        return false;
+      });
   };
 };
 
@@ -75,6 +81,11 @@ export const signUp = (username, email, password, confirmPassword) => {
       confirmPassword === ""
     ) {
       alert("必須項目が未入力です");
+      return false;
+    }
+
+    if (password.length < 6) {
+      alert("パスワードは６文字以上で入力してください");
       return false;
     }
 
@@ -140,3 +151,32 @@ export const resetPassword = (email) => {
     }
   };
 };
+
+// export const updateBooks = (user) => {
+//   return async (dispatch) => {
+//     db.collection("users")
+//       .doc(user)
+//       .collection("books")
+//       .get()
+//       .then((snapshots) => {
+//         let items = [];
+//         snapshots.forEach((snapshot) => {
+//           items.push(snapshot.data());
+//         });
+//         const unread = items.filter((item) => {
+//           return item.progress === "unread";
+//         });
+//         const read = items.filter((item) => {
+//           return item.progress === "read";
+//         });
+//         dispatch(
+//           booksUpdateAction([
+//             {
+//               unread: unread,
+//               read: read,
+//             },
+//           ])
+//         );
+//       });
+//   };
+// };

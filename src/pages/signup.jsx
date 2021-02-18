@@ -44,7 +44,18 @@ const SignUp = () => {
 
   const submit = () => {
     dispatch(signUp(username, email, password, confirmPassword));
-    setLoading(true);
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === "" ||
+      password.length < 6 ||
+      password !== confirmPassword
+    ) {
+      return false;
+    } else {
+      setLoading(true);
+    }
   };
 
   return (

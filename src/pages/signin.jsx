@@ -28,7 +28,11 @@ const SignIn = () => {
 
   const submit = () => {
     dispatch(signIn(email, password));
-    setLoading(true);
+    if (email === "" || password === "" || password.length < 6) {
+      return false;
+    } else {
+      setLoading(true);
+    }
   };
 
   return (
