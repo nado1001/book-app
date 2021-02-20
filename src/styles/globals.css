@@ -23,6 +23,10 @@ a {
   box-sizing: border-box;
 }
 
+input {
+  font-size: 16px !important;
+}
+
 @media (min-width: 769px) {
   .margin-adjuster_container {
     width: 1000px;
