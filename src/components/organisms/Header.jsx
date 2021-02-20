@@ -18,6 +18,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import SearchIcon from "@material-ui/icons/Search";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HelpIcon from "@material-ui/icons/Help";
 import Link from "next/link";
 import { signOut } from "../../redux/users/operations";
 import { useDispatch, useSelector } from "react-redux";
@@ -146,6 +147,16 @@ export default function PersistentDrawerRight() {
                   <MenuBookIcon />
                 </ListItemIcon>
                 <ListItemText primary="本棚" />
+              </ListItem>
+            </a>
+          </Link>
+          <Link href="/guide">
+            <a>
+              <ListItem button key="Book Logの使い方">
+                <ListItemIcon>
+                  <HelpIcon />
+                </ListItemIcon>
+                <ListItemText primary="Book Logの使い方" />
               </ListItem>
             </a>
           </Link>
