@@ -39,7 +39,7 @@ const SignIn = () => {
     <SimpleLayout title="ログイン">
       <div className="container m-auto">
         {loading && <Loading />}
-        <div className="w-96 mx-auto mt-10">
+        <div className="w-96 mx-auto mt-10 px-4 md:px-0">
           <h2 className="text-2xl text-block02 font-semibold text-center mb-2">
             ログイン
           </h2>

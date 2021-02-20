@@ -20,7 +20,7 @@ const Reset = () => {
   return (
     <SimpleLayout title="パスワードのリセット">
       <div className="container m-auto">
-        <div className="w-96 mx-auto mt-10">
+        <div className="w-96 mx-auto mt-10 px-4 md:px-0">
           <h2 className="text-2xl text-block02 font-semibold text-center mb-2">
             パスワードのリセット
           </h2>

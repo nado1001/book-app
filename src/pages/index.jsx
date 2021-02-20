@@ -3,16 +3,20 @@ import { TextInput, Loading } from "../components/atoms";
 import { Layout } from "../components/organisms";
 import { useState, useCallback, useEffect } from "react";
 import Button from "@material-ui/core/Button";
+import HelpIcon from "@material-ui/icons/Help";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
+  icon: {
+    color: "#757575",
+  },
   Button: {
     display: "flex",
     margin: "1rem auto 0",
     padding: 0,
   },
-});
+}));
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -63,6 +67,14 @@ export default function Home() {
           type={"search"}
           onChange={inputSearch}
         />
+        <div className="my-4">
+          <Link href="/guide">
+            <a className="hover:opacity-80">
+              <HelpIcon className={classes.icon} />
+              <span className="ml-2">Book Logの使い方</span>
+            </a>
+          </Link>
+        </div>
       </div>
 
       <ul className="bookList flex flex-wrap md:justify-center items-center justify-between">
