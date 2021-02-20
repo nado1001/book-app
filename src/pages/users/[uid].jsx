@@ -62,7 +62,10 @@ const books = () => {
   return (
     <Layout title="本棚">
       <div className="md:max-w-screen-lg mx-auto mt-8 px-3 md:px-0">
-        <h1 className="text-2xl md:text-left md:pl-4 text-center bg-blue-200 py-2 rounded-lg">
+        <h1
+          className="text-2xl text-left pl-4 text-white py-2 md:rounded-lg md:mx-0 -mx-3"
+          style={{ background: "#2b6de8" }}
+        >
           {selector.users.username}さんの本棚
         </h1>
         <div className="mt-4" />

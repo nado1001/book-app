@@ -26,7 +26,10 @@ const guide = () => {
           読書の進捗を管理することができます
         </p>
         <ul className="md:mt-16 md:flex items-center justify-between">
-          <li className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 h-64 mt-8 md:mt-0">
+          <li
+            className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 mt-8 md:mt-0"
+            style={{ height: "17rem" }}
+          >
             <div className="flex justify-center">
               <SearchIcon className={classes.icon} />
             </div>
@@ -37,7 +40,10 @@ const guide = () => {
               見つかったら詳細ページへ移動しましょう。
             </p>
           </li>
-          <li className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 h-64 mt-8 md:mt-0">
+          <li
+            className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 mt-8 md:mt-0"
+            style={{ height: "17rem" }}
+          >
             <div className="flex justify-center">
               <BookmarksIcon className={classes.icon} />
             </div>
@@ -48,7 +54,10 @@ const guide = () => {
               読みたいと思った本なら自分の本棚に登録してみましょう。
             </p>
           </li>
-          <li className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 h-64 mt-8 md:mt-0">
+          <li
+            className="border-gray-400 border-2 border-solid p-4 rounded md:w-80 mt-8 md:mt-0"
+            style={{ height: "17rem" }}
+          >
             <div className="flex justify-center">
               <ImportContactsIcon className={classes.icon} />
             </div>
