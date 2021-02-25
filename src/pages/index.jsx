@@ -37,7 +37,7 @@ export default function Home() {
         const res = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
             word
-          )}&maxResults=15`
+          )}&maxResults=25`
         );
         const json = await res.data.items;
         setBookList(json);
@@ -47,9 +47,21 @@ export default function Home() {
     [setBookList]
   );
 
+  const setSession = () => {
+    sessionStorage.setItem("search", search);
+    setLoading(true);
+  };
+
   useEffect(() => {
     fetchBooks(search);
   }, [search]);
+
+  useEffect(() => {
+    const session = sessionStorage.getItem("search");
+    if (session !== null) {
+      setSearch(session);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -98,7 +110,7 @@ export default function Home() {
               className={classes.Button}
             >
               <Link href={`/result/${book.id}`}>
-                <a className="px-8 py-2" onClick={() => setLoading(true)}>
+                <a className="px-8 py-2" onClick={setSession}>
                   詳細を見る
                 </a>
               </Link>
