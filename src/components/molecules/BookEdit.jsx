@@ -18,6 +18,11 @@ import { makeStyles } from "@material-ui/styles";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() => ({
+  Dialog: {
+    ["@media (min-width:768px)"]: {
+      minWidth: "400px",
+    },
+  },
   radio: {
     flexDirection: "unset",
   },
@@ -133,7 +138,7 @@ export default function BookEdit(props) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.Dialog}>
           <DialogContentText
             dangerouslySetInnerHTML={{
               __html: props.description,

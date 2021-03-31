@@ -52,7 +52,7 @@ const Post = ({ data }) => {
       ? data.volumeInfo.imageLinks.thumbnail
       : "",
     title: data.volumeInfo.title,
-    description: data.volumeInfo.description,
+    description: data.volumeInfo.description ? data.volumeInfo.description : "",
     totalPage: data.volumeInfo.pageCount,
     currentPage: 0,
     progress: "unread",
