@@ -34,6 +34,16 @@ const books = () => {
     setStatus(event.target.value);
   };
 
+  const noImage = {
+    width: "130px",
+    height: "185px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "1px solid",
+    margin: "auto",
+  };
+
   useEffect(() => {
     const query =
       status !== "" ? booksRef.where("progress", "==", status) : booksRef;
@@ -100,11 +110,15 @@ const books = () => {
                     currentPage={book.currentPage}
                     totalPage={book.totalPage}
                   >
-                    <img
-                      src={book.thumbnail}
-                      alt={book.title}
-                      className="mx-auto"
-                    />
+                    {book.thumbnail ? (
+                      <img
+                        src={book.thumbnail}
+                        alt={book.title}
+                        className="mx-auto"
+                      />
+                    ) : (
+                      <span style={noImage}>{book.title}</span>
+                    )}
                   </BookEdit>
                 </li>
               ))}
