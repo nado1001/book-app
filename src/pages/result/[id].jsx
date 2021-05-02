@@ -124,6 +124,15 @@ const Post = ({ data }) => {
               color="primary"
               className={classes.Button}
             >
+              <div className="px-8 py-3" onClick={updateBooks}>
+                本棚に登録する
+              </div>
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.Button}
+            >
               <a
                 className="px-8 py-3"
                 href={`https://www.amazon.co.jp/s?k=${encodeURI(
@@ -133,15 +142,6 @@ const Post = ({ data }) => {
               >
                 Amazonで購入する
               </a>
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.Button}
-            >
-              <div className="px-8 py-3" onClick={updateBooks}>
-                本棚に登録する
-              </div>
             </Button>
           </div>
 
