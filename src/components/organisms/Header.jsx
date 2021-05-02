@@ -130,16 +130,6 @@ export default function PersistentDrawerRight() {
         </div>
         <Divider />
         <List>
-          <Link href="/">
-            <a>
-              <ListItem button key="書籍検索">
-                <ListItemIcon>
-                  <SearchIcon />
-                </ListItemIcon>
-                <ListItemText primary="書籍検索" />
-              </ListItem>
-            </a>
-          </Link>
           <Link href={`/users/${selector.users.uid}`}>
             <a>
               <ListItem button key="本棚">
@@ -147,6 +137,16 @@ export default function PersistentDrawerRight() {
                   <MenuBookIcon />
                 </ListItemIcon>
                 <ListItemText primary="本棚" />
+              </ListItem>
+            </a>
+          </Link>
+          <Link href="/search">
+            <a>
+              <ListItem button key="書籍検索">
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="書籍検索" />
               </ListItem>
             </a>
           </Link>
