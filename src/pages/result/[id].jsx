@@ -182,7 +182,7 @@ const Post = ({ data }) => {
                   color="primary"
                   className={classes.Button}
                 >
-                  <Link href="/">
+                  <Link href="/search">
                     <a className="block px-8 py-3 w-full font-bold">
                       書籍検索へ戻る
                     </a>
