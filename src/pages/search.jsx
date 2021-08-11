@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { TextInput, Loading } from "../components/atoms";
-import { Layout } from "../components/organisms";
+import { TextInput, Loading } from "@/components/atoms";
+import { Layout } from "@/components/organisms";
 import { useState, useCallback, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import HelpIcon from "@material-ui/icons/Help";

@@ -1,13 +1,13 @@
 import React from "react";
 import { Provider } from "react-redux";
-import createStore from "../redux/store/store";
-import "../styles/globals.css";
+import createStore from "@/redux/store/store";
+import "@/styles/globals.css";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../theme";
-import { Auth } from "../components/organisms";
+import theme from "@/theme";
+import { Auth } from "@/components/organisms";
 
 // const history = History.createBrowserHistory();
 export const store = createStore();

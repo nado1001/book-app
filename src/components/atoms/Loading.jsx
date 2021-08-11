@@ -1,4 +1,4 @@
-import styles from "../../styles/Utils.module.css";
+import styles from "@/styles/Utils.module.css";
 
 const loading = () => {
   return (

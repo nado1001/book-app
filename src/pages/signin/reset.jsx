@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import { TextInput, PrimaryButton } from "../../components/atoms";
-import { SimpleLayout } from "../../components/organisms";
-import { resetPassword } from "../../redux/users/operations";
+import { TextInput, PrimaryButton } from "@/components/atoms";
+import { SimpleLayout } from "@/components/organisms";
+import { resetPassword } from "@/redux/users/operations";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 

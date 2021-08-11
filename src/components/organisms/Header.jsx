@@ -20,7 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HelpIcon from "@material-ui/icons/Help";
 import Link from "next/link";
-import { signOut } from "../../redux/users/operations";
+import { signOut } from "@/redux/users/operations";
 import { useDispatch, useSelector } from "react-redux";
 
 const drawerWidth = 240;
