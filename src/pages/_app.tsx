@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { AppProps } from "next/app";
+import Head from "next/head";
 import { Provider } from "react-redux";
 import createStore from "@/redux/store/store";
 import "@/styles/globals.css";
 import PropTypes from "prop-types";
-import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "@/theme";
@@ -12,13 +13,13 @@ import { Auth } from "@/components/organisms";
 // const history = History.createBrowserHistory();
 export const store = createStore();
 
-export default function MyApp(props) {
+export default function MyApp(props: AppProps): JSX.Element {
   const { Component, pageProps } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
+    const jssStyles = document.querySelector<HTMLElement>("#jss-server-side");
+    if (jssStyles != null && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
