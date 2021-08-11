@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Header } from "./index";
+import { Header } from "@/components/organisms/index";
 
 const siteTitle = "Book Log";
 

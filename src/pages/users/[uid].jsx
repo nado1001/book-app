@@ -1,6 +1,6 @@
-import { db } from "../../firebase";
-import { Layout } from "../../components/organisms";
-import { BookEdit } from "../../components/molecules";
+import { db } from "@/firebase";
+import { Layout } from "@/components/organisms";
+import { BookEdit } from "@/components/molecules";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";

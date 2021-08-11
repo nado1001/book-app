@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIsSignedIn } from "../../redux/users/selectors";
-import { listenAuthState } from "../../redux/users/operations";
+import { getIsSignedIn } from "@/redux/users/selectors";
+import { listenAuthState } from "@/redux/users/operations";
 import { useRouter } from "next/router";
 
 const Auth = ({ children }) => {

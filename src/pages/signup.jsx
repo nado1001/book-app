@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
-import { TextInput, PrimaryButton, Loading } from "../components/atoms";
-import { signUp } from "../redux/users/operations";
+import { TextInput, PrimaryButton, Loading } from "@/components/atoms";
+import { signUp } from "@/redux/users/operations";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import { SimpleLayout } from "../components/organisms";
+import { SimpleLayout } from "@/components/organisms";
 
 const SignUp = () => {
   const dispatch = useDispatch();
