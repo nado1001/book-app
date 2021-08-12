@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import { Layout } from "@/components/organisms";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const guide = () => {
+const guide: NextPage = () => {
   const classes = useStyles();
   return (
     <Layout title="Book Logの使い方">
