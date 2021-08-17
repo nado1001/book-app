@@ -1,7 +1,8 @@
+import type { NextPage } from "next";
 import Link from "next/link";
-import { TextInput, Loading } from "@/components/atoms";
+import { TextInput, Loading } from "@/components/atoms/";
 import { Layout } from "@/components/organisms";
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import HelpIcon from "@material-ui/icons/Help";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Home() {
+const search: NextPage = () => {
   const [search, setSearch] = useState("");
   const [bookList, setBookList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,9 +33,9 @@ export default function Home() {
   );
 
   const fetchBooks = useCallback(
-    async (word) => {
+    async (word: string): Promise<void> => {
       if (word) {
-        const res = await axios.get(
+        const res: Promise<object> = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
             word
           )}&maxResults=25`
@@ -120,4 +121,6 @@ export default function Home() {
       </ul>
     </Layout>
   );
-}
+};
+
+export default search;
