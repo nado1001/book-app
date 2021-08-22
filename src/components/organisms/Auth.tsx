@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
 import type { ReactNode, VFC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { UsersState } from "@/redux/store/store";
 import { getIsSignedIn } from "@/redux/users/selectors";
 import { listenAuthState } from "@/redux/users/operations";
 import { useRouter } from "next/router";
 
-type Props = {
-  children: ReactNode;
-};
-
-const Auth: VFC<Props> = (props) => {
+const Auth: VFC<{ children: ReactNode }> = (props: any) => {
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
+  // TODO selectorの型指定
+  const selector = useSelector((state: any) => state);
   const isSignedIn = getIsSignedIn(selector);
   const router = useRouter();
 
