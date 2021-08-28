@@ -8,6 +8,13 @@ import HelpIcon from "@material-ui/icons/Help";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
+interface BookState {
+  kind: string;
+  id: string;
+  etag: string;
+  selfLink: string;
+}
+
 const useStyles = makeStyles(() => ({
   icon: {
     color: "#757575",
@@ -20,9 +27,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const search: NextPage = () => {
-  const [search, setSearch] = useState("");
-  const [bookList, setBookList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [bookList, setBookList] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const classes = useStyles();
 
   const inputSearch = useCallback(
@@ -35,7 +42,7 @@ const search: NextPage = () => {
   const fetchBooks = useCallback(
     async (word: string): Promise<void> => {
       if (word) {
-        const res: Promise<object> = await axios.get(
+        const res: any = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
             word
           )}&maxResults=25`
@@ -91,7 +98,7 @@ const search: NextPage = () => {
       </div>
 
       <ul className="bookList flex flex-wrap md:justify-center items-center justify-between">
-        {bookList.map((book, index) => (
+        {bookList.map((book: any, index: number) => (
           <li className="bookList__item mt-8 md:w-30 w-1/2" key={index}>
             <h2 className="text-center mb-2">{book.volumeInfo.title}</h2>
             {book.volumeInfo.imageLinks ? (
