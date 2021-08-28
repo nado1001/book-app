@@ -3,12 +3,20 @@ import { Layout } from "@/components/organisms";
 import { BookEdit } from "@/components/molecules";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/styles";
+
+type Selector = {
+  login: string;
+  id: number;
+};
+
+interface HTMLButtonEvent extends Event {
+  target: HTMLButtonElement;
+}
 
 const useStyles = makeStyles(() => ({
   select: {
@@ -19,9 +27,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 const books = () => {
-  const selector = useSelector((state) => state);
+  const selector = useSelector((state: any) => state);
   const classes = useStyles();
-  const router = useRouter();
   const booksRef = db
     .collection("users")
     .doc(selector.users.uid)
@@ -30,7 +37,7 @@ const books = () => {
   const [status, setStatus] = useState("");
   const [books, setBooks] = useState([]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setStatus(event.target.value);
   };
 
@@ -50,7 +57,7 @@ const books = () => {
     query
       .get()
       .then((snapshots) => {
-        const list = [];
+        const list: any = [];
         snapshots.forEach((snapshot) => {
           const data = snapshot.data();
           list.push({
@@ -101,7 +108,7 @@ const books = () => {
           </FormControl>
           {books.length !== 0 ? (
             <ul className="mt-8 bg-gray-100 flex items-center flex-wrap">
-              {books.map((book, index) => (
+              {books.map((book: any, index: number) => (
                 <li key={index} className="w-1/2 md:w-auto md:ml-4 py-4">
                   <BookEdit
                     title={book.title}

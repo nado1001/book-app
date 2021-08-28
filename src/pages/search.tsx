@@ -1,11 +1,19 @@
+import type { NextPage } from "next";
 import Link from "next/link";
-import { TextInput, Loading } from "@/components/atoms";
+import { TextInput, Loading } from "@/components/atoms/";
 import { Layout } from "@/components/organisms";
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import HelpIcon from "@material-ui/icons/Help";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+
+interface BookState {
+  kind: string;
+  id: string;
+  etag: string;
+  selfLink: string;
+}
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -18,10 +26,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Home() {
-  const [search, setSearch] = useState("");
-  const [bookList, setBookList] = useState([]);
-  const [loading, setLoading] = useState(false);
+const search: NextPage = () => {
+  const [search, setSearch] = useState<string>("");
+  const [bookList, setBookList] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const classes = useStyles();
 
   const inputSearch = useCallback(
@@ -32,9 +40,9 @@ export default function Home() {
   );
 
   const fetchBooks = useCallback(
-    async (word) => {
+    async (word: string): Promise<void> => {
       if (word) {
-        const res = await axios.get(
+        const res: any = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=${encodeURI(
             word
           )}&maxResults=25`
@@ -90,7 +98,7 @@ export default function Home() {
       </div>
 
       <ul className="bookList flex flex-wrap md:justify-center items-center justify-between">
-        {bookList.map((book, index) => (
+        {bookList.map((book: any, index: number) => (
           <li className="bookList__item mt-8 md:w-30 w-1/2" key={index}>
             <h2 className="text-center mb-2">{book.volumeInfo.title}</h2>
             {book.volumeInfo.imageLinks ? (
@@ -120,4 +128,6 @@ export default function Home() {
       </ul>
     </Layout>
   );
-}
+};
+
+export default search;
